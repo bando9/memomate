@@ -37,5 +37,59 @@ code {
 
 .toggle-icon {
   font-size: 1.1rem;
+  transition: all 0.3s;
   cursor: pointer;
+}
+
+.toggle-icon:hover {
+  transform: scale(1.2) rotate(-20deg);
+}
+
+.note-card {
+  max-width: 300px;
+  max-height: 50vh;
+  border: 1px solid #5f6368;
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 2em;
+}
+
+.note-content {
+  width: 100%;
+  max-height: 45vh;
+  overflow: hidden;
+}
+
+h2 {
+  margin-bottom: -0.2em;
+  margin-top: -0.2em;
+}
+
+.note-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.2em;
+}
+
+.footer-icon {
+  font-size: 1.3em;
+  cursor: pointer;
+}
+
+.icon:hover {
+  transform: scale(1.3);
+  transition: all 0.3s ease-in-out;
+}
+
+.delete-icon {
+  margin-right: 7px;
+  color: #d32f2f;
+}
+
+.archive-icon {
+  color: #546e7a;
 }
