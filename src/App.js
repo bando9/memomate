@@ -1,11 +1,11 @@
 import Header from "./components/Header.js";
-import NoteCard from "./components/NoteCard.js";
+import NoteList from "./components/NoteList.js";
 
 function App() {
   return (
     <div className="container">
       <Header />
-      <NoteCard />
+      <NoteList />
     </div>
   );
 }

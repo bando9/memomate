@@ -46,15 +46,15 @@ code {
 }
 
 .note-card {
-  max-width: 300px;
-  max-height: 50vh;
   border: 1px solid #5f6368;
   border-radius: 8px;
   padding: 1rem;
+  min-width: 170px;
+  max-height: 50vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-top: 2em;
+  white-space: pre-wrap;
 }
 
 .note-content {
@@ -92,4 +92,10 @@ h2 {
 
 .archive-icon {
   color: #546e7a;
+}
+
+.note-list {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
