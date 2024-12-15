@@ -3,6 +3,7 @@ import NoteForm from "./components/NoteForm.js";
 import NoteList from "./components/NoteList.js";
 import { useState } from "react";
 import { getInitialData, showFormattedDate } from "./utils/index.js";
+// import { add_note } from './image/add_file.svg' 
 
 function App() {
   const initialNotes = getInitialData().map(note => ({
@@ -11,6 +12,8 @@ function App() {
   }));
 
   const [notes, setNotes] = useState(initialNotes);
+
+  const add_note = require('./image/add_file.png');
 
   const addNote = (title, body) => {
     if(!title.trim() || !body.trim()){
@@ -31,8 +34,11 @@ function App() {
   };
 
   const deleteNote = (id) => {
-    const newNotes = notes.filter((note) => note.id !== id);
-    setNotes(newNotes);
+    const isConfirmed = window.confirm("Are you sure?");
+    if (isConfirmed) {
+      const newNotes = notes.filter((note) => note.id !== id);
+      setNotes(newNotes);
+    }    
   };
 
   return (
@@ -46,7 +52,10 @@ function App() {
             handleDeleteNote={deleteNote}
           />
         ) : (
-          <h3>Belum ada Catatan</h3>
+          <div className="empty-state">
+            <img src={add_note} className="empty-image" />
+            <h3 className="empty-message" >Belum ada Catatan. Tambahkan catatan pertama Anda!</h3>
+          </div>
         )
       }
     </div>
