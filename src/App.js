@@ -1,11 +1,16 @@
-import { RiH3 } from "react-icons/ri";
 import Header from "./components/Header.js";
 import NoteForm from "./components/NoteForm.js";
 import NoteList from "./components/NoteList.js";
 import { useState } from "react";
+import { getInitialData, showFormattedDate } from "./utils/index.js";
 
 function App() {
-  const [notes, setNotes] = useState([]);
+  const initialNotes = getInitialData().map(note => ({
+    ...note,
+    createdAt: showFormattedDate(note.createdAt),
+  }));
+
+  const [notes, setNotes] = useState(initialNotes);
 
   const addNote = (title, body) => {
     if(!title.trim() || !body.trim()){
