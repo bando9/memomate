@@ -1,12 +1,17 @@
 import NoteCard from "./NoteCard.js";
 
-const NoteList = () => {
+const NoteList = ({notes}) => {
   return (
     <div class="note-list">
-      <NoteCard />
-      <NoteCard />
-      <NoteCard />
-      <NoteCard />
+      {notes.map((note) => (
+        <NoteCard 
+        key={note.id}
+        id={note.id}
+        title={note.title}
+        body={note.body}
+        createdAt={note.createdAt}
+        />
+      ))}
     </div>
   );
 };
