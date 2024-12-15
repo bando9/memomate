@@ -99,3 +99,46 @@ h2 {
   grid-gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
+
+.note-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  min-width: 300px;
+  max-width: 700px;
+  margin: 0 auto;
+  border: 1px solid #5f6368;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.2rem;
+  margin-top: 1.2rem;
+  cursor: text;
+}
+
+.save-icon {
+  color: green;
+  cursor: pointer;
+}
+
+input,
+textarea {
+  border: none;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5em;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+textarea {
+  resize: none;
+  margin-top: 0.3em;
+}
+
+input {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
