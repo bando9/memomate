@@ -1,7 +1,7 @@
 import { MdDeleteForever } from "react-icons/md";
 import { MdArchive } from "react-icons/md";
 
-const NoteCard = ({title, body, createdAt}) => {
+const NoteCard = ({id, title, body, createdAt, handleDeleteNote}) => {
   return (
     <div class="note-card">
       <div class="note-content">
@@ -11,7 +11,7 @@ const NoteCard = ({title, body, createdAt}) => {
       <div class="note-footer">
         <small>{createdAt} </small>
         <div class="footer-icon">
-          <MdDeleteForever class="delete-icon icon" />
+          <MdDeleteForever class="delete-icon icon" onClick={() => handleDeleteNote(id)} />
           <MdArchive class="archive-icon icon" />
         </div>
       </div>

@@ -29,6 +29,12 @@ function App() {
     const newNotes = [...notes, newNote];
     setNotes(newNotes);
   };
+
+  const deleteNote = (id) => {
+    const newNotes = notes.filter((note) => note.id !== id);
+    setNotes(newNotes);
+  };
+
   return (
     <div className="container">
       <Header />
@@ -37,6 +43,7 @@ function App() {
         notes.length >0 ? (
           <NoteList 
             notes={notes.filter((note) => !note.archived)}
+            handleDeleteNote={deleteNote}
           />
         ) : (
           <h3>Belum ada Catatan</h3>
