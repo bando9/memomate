@@ -9,10 +9,12 @@ function App() {
   const initialNotes = getInitialData().map(note => ({
     ...note,
     createdAt: showFormattedDate(note.createdAt),
+    archived: false,
   }));
 
   const [notes, setNotes] = useState(initialNotes);
   const [search, setSearch] = useState('');
+  const [archivedNotes, setArchivedNotes] = useState([])
 
   const add_note = require('./image/add_file.png');
   const photographer = require('./image/photographer.png');
@@ -43,6 +45,22 @@ function App() {
     }    
   };
 
+  const archiveNote = (id) => {
+    const noteToArchive = notes.find((note) => note.id === id);
+    if (noteToArchive) {
+      noteToArchive.archived = true;
+      setNotes(notes.filter((note) => note.id !== id))
+      setArchivedNotes([...archivedNotes, noteToArchive])
+    }
+  }
+
+  const unArchiveNote = (id) => {
+    const noteToUnarchive = archivedNotes.find((note) => note.id === id);
+    noteToUnarchive.archived = false;
+    setArchivedNotes(archivedNotes.filter((note) => note.id !== id))
+    setNotes((prevNotes) => [...prevNotes, noteToUnarchive]);
+  }
+
   const filteredNotes = notes.filter((note) => note.title.toLowerCase().includes(search.toLowerCase()))
 
   return (
@@ -50,12 +68,14 @@ function App() {
       <Header />
       <NoteForm handleAddNote={addNote} />
       <Search handleSearchNote={setSearch} />
+      <h1>Active Notes</h1>
       {
         notes.length >0 ? (
           filteredNotes.length > 0 ? (
             <NoteList 
             notes={filteredNotes}
             handleDeleteNote={deleteNote}
+            handleArchiveNote={archiveNote}
           />
           ) : (
             <div className="empty-state">
@@ -74,6 +94,19 @@ function App() {
           </div>
         )
       }
+      <h1>Archived Notes</h1>
+      {
+        archivedNotes.length > 0 ? (
+          <NoteList
+            notes={archivedNotes}
+            handleDeleteNote={deleteNote}
+            handleUnarchiveNote={unArchiveNote}
+          />
+        ) : (
+          <p>kosong</p>
+        )
+      }
+
     </div>
   );
 };

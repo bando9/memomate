@@ -1,6 +1,6 @@
 import NoteCard from "./NoteCard.js";
 
-const NoteList = ({notes, handleDeleteNote}) => {
+const NoteList = ({notes, handleDeleteNote, handleArchiveNote, handleUnarchiveNote}) => {
   return (
     <div class="note-list">
       {notes.map((note) => (
@@ -10,7 +10,10 @@ const NoteList = ({notes, handleDeleteNote}) => {
         title={note.title}
         body={note.body}
         createdAt={note.createdAt}
+        archived={note.archived}
         handleDeleteNote={handleDeleteNote}
+        handleArchiveNote={handleArchiveNote}
+        handleUnarchiveNote={handleUnarchiveNote}
         />
       ))}
     </div>
