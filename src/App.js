@@ -18,6 +18,7 @@ function App() {
 
   const add_note = require('./image/add_file.png');
   const photographer = require('./image/photographer.png');
+  const archive = require('./image/Bookshelves.png');
 
   const addNote = (title, body) => {
     if(!title.trim() || !body.trim()){
@@ -37,11 +38,19 @@ function App() {
     setNotes(newNotes);
   };
 
-  const deleteNote = (id) => {
+  const deleteActiveNote = (id) => {
     const isConfirmed = window.confirm("Are you sure?");
     if (isConfirmed) {
       const newNotes = notes.filter((note) => note.id !== id);
       setNotes(newNotes);
+    }    
+  };
+
+  const deleteArchivedNote = (id) => {
+    const isConfirmed = window.confirm("Are you sure?");
+    if (isConfirmed) {
+      const newArchivedNotes = archivedNotes.filter((note) => note.id !== id);
+      setArchivedNotes(newArchivedNotes);
     }    
   };
 
@@ -74,7 +83,7 @@ function App() {
           filteredNotes.length > 0 ? (
             <NoteList 
             notes={filteredNotes}
-            handleDeleteNote={deleteNote}
+            handleDeleteNote={deleteActiveNote}
             handleArchiveNote={archiveNote}
           />
           ) : (
@@ -99,14 +108,16 @@ function App() {
         archivedNotes.length > 0 ? (
           <NoteList
             notes={archivedNotes}
-            handleDeleteNote={deleteNote}
+            handleDeleteNote={deleteArchivedNote}
             handleUnarchiveNote={unArchiveNote}
           />
         ) : (
-          <p>kosong</p>
+          <div className="empty-state">
+            <img src={archive} className="empty-image" />
+            <h3 className="empty-message">Belum ada catatan yang diarsipkan. <span className="highlight">Simpan momen penting Anda di sini untuk dikenang nanti.</span></h3>
+          </div>
         )
       }
-
     </div>
   );
 };
